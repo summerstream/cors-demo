@@ -1,0 +1,3 @@
+please add two lines into your local machine's hosts file to emulator two domains:
+127.0.0.1 a
+127.0.0.1 b
