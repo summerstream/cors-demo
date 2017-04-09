@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>cors demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <ul>
+                <li>
+                    <h2>normal post request</h2>
+                    <div>
+                        <button id="post1" onclick="post1();"> post</button>
+                        <span id="r1">200</span>
+                    </div>
+                </li>
+                <li>
+                    <h2>normal cors post request</h2>
+                    <div>
+                        <button id="post2" onclick="post2();"> post</button>
+                        <span id="r2">200</span>
+                    </div>
+                </li>
+                <li>
+                    <h2>adjusted cors post request</h2>
+                    <div>
+                        <button id="post3" onclick="post3();"> post</button>
+                        <span id="r3">200</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script>
+            var ajax = new XMLHttpRequest();
+            var body = {
+                name:'world'
+            }
+            var jsonBody = JSON.stringify(body);
+            var url1 = 'http://a:3000/api1';
+            var url2 = 'http://b:3000/api2';
+            var url3 = 'http://b:3000/api3';
+            function post1(){
+                ajax.open('post',url1,true);
+                ajax.setRequestHeader('Content-Type','application/json');
+                ajax.onreadystatechange = function(){
+                    document.getElementById('r1').innerHTML = ajax.readyState+' '+ajax.status+' '+ajax.responseText;
+                }
+                ajax.send(jsonBody);
+            }
+            function post2(){
+                ajax.open('post',url2,true);
+                ajax.setRequestHeader('Content-Type','application/json');
+                ajax.onreadystatechange = function(){
+                    document.getElementById('r2').innerHTML = ajax.readyState+' '+ajax.status+' '+ajax.responseText;
+                }
+                ajax.send(jsonBody);
+            }
+            function post3(){
+                ajax.open('post',url3,true);
+                ajax.setRequestHeader('Content-Type','application/json');
+                ajax.onreadystatechange = function(){
+                    document.getElementById('r3').innerHTML = ajax.readyState+' '+ajax.status+' '+ajax.responseText;
+                }
+                ajax.send(jsonBody);
+            }
+        </script>
+    </body>
+</html>
