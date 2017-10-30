@@ -30,6 +30,13 @@
                         <span id="r3"></span>
                     </div>
                 </li>
+                <li>
+                    <h2>jsonp</h2>
+                    <div>
+                        <button id="jsonp" onclick="jsonp();"> jsonp</button>
+                        <span id="log"></span>
+                    </div>
+                </li>
             </ul>
         </div>
         <script>
@@ -74,6 +81,16 @@
                     r3.innerHTML = ajax.readyState+' '+ajax.status+' '+ajax.responseText;
                 }
                 ajax.send(jsonBody);
+            }
+            function jsonp(){
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.src = 'http://b:3000/jsonp?callback=print';
+                document.body.appendChild(s);
+            }
+            function print(str){
+                console.info(str);
+                log.innerHTML = str;
             }
         </script>
     </body>

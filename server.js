@@ -27,6 +27,11 @@ app.options('/api3',function(req,res){
     res.send('allowed.');
 });
 
+app.get('/jsonp',function(req,res){
+    var p = req.query['callback'];
+    res.send(`${p}('hello,world')`);
+});
+
 app.use(express.static('public'));
 
 app.listen(3000)
